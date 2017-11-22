@@ -5,4 +5,4 @@ def application(environ, start_response):
     db=_mysql.connect(sae.const.MYSQL_HOST,sae.const.MYSQL_USER,sae.const.MYSQL_PASS,sae.const.MYSQL_DB)
     r = db.store_result()
 
-    return str(r.fetch_row())
+    return str(sae.const.MYSQL_HOST)
