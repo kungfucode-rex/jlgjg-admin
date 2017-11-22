@@ -6,4 +6,4 @@ def application(environ, start_response):
     db.query('select * from taizhang')
     r = db.store_result()
 
-    return str(r)
+    return str(r.fetch_row())
