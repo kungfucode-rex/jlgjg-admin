@@ -1,12 +1,8 @@
-import mysql.connector
+import sae.const
+import _mysql
 def application(environ, start_response):
     start_response('200 ok', [('content-type', 'text/plain')])
-    conn = mysql.connector.connect(user='2on5klom4y', password='54hzmw13z21yk5kmwzmm2wwl0mji42jly1j3llih', use_unicode=True)
-    cursor = conn.cursor()
-    cursor.execute('select * from jlgjg.taizhang')
-    values = cursor.fetchall()
-    print values
-    cursor.close()
-    conn.close()
+    db=_mysql.connect(sae.const.MYSQL_HOST,sae.const.MYSQL_USER,sae.const.MYSQL_PASS,sae.const.MYSQL_DB)
+    r = db.store_result()
 
-    return str(values)
+    return str(r)
