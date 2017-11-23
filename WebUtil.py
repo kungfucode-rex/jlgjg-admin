@@ -34,7 +34,7 @@ class UTC(datetime.tzinfo):
         if mt:
             minus = mt.group(1) == '-'
             h = int(mt.group(2))
-            h = int(mt.group(3))
+            m = int(mt.group(3))
             if minus:
                 h, m = (-h), (-m)
             self._utcoffset = datetime.timedelta(hours=h, minutes=m)
