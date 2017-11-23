@@ -1,5 +1,5 @@
 import sae.const
-import _mysql
+import _mysql, os
 import api_config
 from WebUtil import WSGIApplication
 def app(environ, start_response):
