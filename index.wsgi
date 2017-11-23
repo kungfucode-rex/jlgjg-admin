@@ -10,4 +10,4 @@ def app(environ, start_response):
     return str(r.fetch_row())
 
 application = sae.create_wsgi_app(app)
-application.add_module(api_config)
+#application.add_module(api_config)
