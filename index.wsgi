@@ -3,6 +3,7 @@ import sae.const
 import DBUtil
 from Models import User
 import web
+import WebUtil
 web.config.debug = True
 class Dict(dict):
     def __init__(self, name=(), values=(), **kw):
@@ -34,8 +35,9 @@ config = {
 config = toDict(config)
 DBUtil.create_engine(**config.db)
 urls = ('/hello', 'hello')
-app = web.application(urls, globals())
-app.debug = True
+app = WebUtil.WSGIApplication()
+#app = web.application(urls, globals())
+#app.debug = True
 class hello:
     def GET(self):
         web.header('Content-Type', 'text/plain')
