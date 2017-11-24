@@ -35,9 +35,8 @@ config = {
 config = toDict(config)
 DBUtil.create_engine(**config.db)
 urls = ('/hello', 'hello')
-app = WebUtil.WSGIApplication()
-#app = web.application(urls, globals())
-#app.debug = True
+app = web.application(urls, globals())
+app.debug = True
 class hello:
     def GET(self):
         web.header('Content-Type', 'text/plain')
