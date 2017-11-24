@@ -9,7 +9,7 @@ app = web.application(urls, globals())
 class hello:
     def GET(self):
         web.header('Content-Type', 'text/plain')
-        return User.get(1).cnname
+        return 's'#User.get(1).cnname
     
 if __name__ == '__main__':
     app.run
