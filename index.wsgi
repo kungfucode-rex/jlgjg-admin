@@ -9,6 +9,6 @@ def app(environ, start_response):
     r = db.store_result()
 
     return str(dir(sea))
-application = WSGIApplication(os.path.dirname(os.path.abspath(__file__)))
-#application = sae.create_wsgi_app(app)
+#application = WSGIApplication(os.path.dirname(os.path.abspath(__file__)))
+application = sae.create_wsgi_app(app)
 #application.add_module(api_config)
