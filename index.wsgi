@@ -46,7 +46,7 @@ class hello:
 if __name__ == '__main__':
     app.run
 else:
-	application = sae.create_wsgi_app(app.wsgifunc())    
+	application = sae.create_wsgi_app(app)    
     
 def app1(environ, start_response):
     start_response('200 ok', [('content-type', 'text/plain')])
