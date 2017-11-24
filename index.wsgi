@@ -2,6 +2,25 @@ import sae.const
 import DBUtil
 from Models import User
 import web
+
+class Dict(dict):
+    def __init__(self, name=(), values=(), **kw):
+        super(Dict, self).__init__(**kw)
+        for k, v in zip(name, values):
+            self[k] = v
+
+    def __getattr__(self, key):
+        try:
+            return self[key]
+        except KeyError:
+            raise AttributeError('没找到属性 %s' % key)
+
+def toDict(d):
+    D = Dict()
+    for k, v in d.iteritems():
+        D[k] = toDict(v) if isinstance(v, dict) else v
+    return D
+
 config = {
     'db': {
         'host': sae.const.MYSQL_HOST,
@@ -11,6 +30,7 @@ config = {
         'passwd': sae.const.MYSQL_PASS
     }
 }
+config = toDict(config)
 DBUtil.create_engine(**config.db)
 urls = ('/hello', 'hello')
 app = web.application(urls, globals())
