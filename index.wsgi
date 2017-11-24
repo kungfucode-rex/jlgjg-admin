@@ -8,7 +8,7 @@ def app(environ, start_response):
     db.query('select * from taizhang')
     r = db.store_result()
 
-    return str(r.fetch_row())
+    return str(dir(sea))
 application = WSGIApplication(os.path.dirname(os.path.abspath(__file__)))
 #application = sae.create_wsgi_app(app)
 #application.add_module(api_config)
