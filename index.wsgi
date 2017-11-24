@@ -1,3 +1,4 @@
+# -*- coding:utf8
 import sae.const
 import DBUtil
 from Models import User
