@@ -1,4 +1,4 @@
-import sae.const, sea
+import sae.const, sae
 import _mysql, os
 import api_config
 def app(environ, start_response):
@@ -7,7 +7,7 @@ def app(environ, start_response):
     db.query('select * from taizhang')
     r = db.store_result()
 
-    return str(dir(sea))
+    return str(dir(sae))
 #application = WSGIApplication(os.path.dirname(os.path.abspath(__file__)))
 application = sae.create_wsgi_app(app)
 #application.add_module(api_config)
