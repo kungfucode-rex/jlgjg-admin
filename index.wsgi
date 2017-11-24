@@ -3,7 +3,6 @@ import sae.const
 import DBUtil
 from Models import User
 import web
-import WebUtil
 web.config.debug = True
 class Dict(dict):
     def __init__(self, name=(), values=(), **kw):
