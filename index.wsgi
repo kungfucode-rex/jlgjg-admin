@@ -3,6 +3,7 @@ import sae.const
 import DBUtil
 from Models import User
 import web
+import MySQLdb
 
 class Dict(dict):
     def __init__(self, name=(), values=(), **kw):
@@ -39,7 +40,7 @@ app.debug = True
 class hello:
     def GET(self):
         web.header('Content-Type', 'text/plain')
-        return str(DBUtil.select_one('select * from taizhang'))
+        return dir(MySQLdb)#str(DBUtil.select_one('select * from taizhang'))
     
 if __name__ == '__main__':
     app.run
