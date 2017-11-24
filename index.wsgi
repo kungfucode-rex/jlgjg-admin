@@ -1,5 +1,6 @@
 import sae.const
 import _mysql
+import web
 #urls = ('/hello', 'hello')
 #app = 
 def app(environ, start_response):
@@ -8,5 +9,5 @@ def app(environ, start_response):
     db.query('select * from taizhang')
     r = db.store_result()
 
-    return str(dir(sae))
+    return str(dir(web))
 application = sae.create_wsgi_app(app)
