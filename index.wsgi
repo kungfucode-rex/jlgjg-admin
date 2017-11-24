@@ -35,7 +35,7 @@ config = toDict(config)
 DBUtil.create_engine(**config.db)
 urls = ('/hello', 'hello')
 app = web.application(urls, globals())
-
+app.debug = true
 class hello:
     def GET(self):
         web.header('Content-Type', 'text/plain')
