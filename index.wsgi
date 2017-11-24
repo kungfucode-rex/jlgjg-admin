@@ -39,7 +39,7 @@ app = web.application(urls, globals())
 class hello:
     def GET(self):
         web.header('Content-Type', 'text/plain')
-        return str(DBUtil.select_one('select * from taizhang'), True)
+        return str(DBUtil.select_one('select * from taizhang'))
     
 if __name__ == '__main__':
     app.run
