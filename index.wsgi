@@ -2,7 +2,7 @@ import sae.const
 import DBUtil
 from Models import User
 import web
-DBUtil.create_engine(sae.const.MYSQL_USER,sae.const.MYSQL_PASS,sae.const.MYSQL_DB,sae.const.MYSQL_HOST)
+#DBUtil.create_engine(sae.const.MYSQL_USER,sae.const.MYSQL_PASS,sae.const.MYSQL_DB,sae.const.MYSQL_HOST)
 urls = ('/hello', 'hello')
 app = web.application(urls, globals())
 
