@@ -201,8 +201,8 @@ class Model(dict):
                 if not hasattr(self, k):
                     setattr(self, k, v.default)
                 params[v.name] = getattr(self, k)
-        DBUtil.insert('%s' % self.__table__, **params)
-        return self
+        result = DBUtil.insert('%s' % self.__table__, **params)
+        return self if result != -1 else -1
 
 
 

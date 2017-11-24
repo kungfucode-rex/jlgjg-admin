@@ -1,5 +1,5 @@
 # -*- coding:utf8
-import MySQLdb, threading, time, logging, functools
+import MySQLdb, threading, time, logging, functools, uuid
 
 
 # 封装字典
@@ -17,6 +17,12 @@ class Dict(dict):
 
     def __setattr__(self, key, value):
         self[key] = value
+
+
+def next_id(t=None):
+    if t is None:
+        t = time.time()
+    return '%015d%s000' % (int(t * 1000), uuid.uuid4().hex)
 
 
 # 打印sql日志
@@ -91,6 +97,7 @@ class _Engine(object):
 class DBError(Exception):
     pass
 
+
 class MultiColumnsError(Exception):
     pass
 
@@ -108,6 +115,7 @@ def create_engine(user, passwd, db, host='127.0.0.1', port=3306, **kw):
         engine = _Engine(lambda: MySQLdb.connect(**params))
         # 测试连接
         logging.info('初始化 mysql <%s> 引擎成功' % hex(id(engine)))
+
 
 class _ConnectionCtx(object):
     def __enter__(self):
@@ -127,11 +135,13 @@ class _ConnectionCtx(object):
 def connection():
     return _ConnectionCtx()
 
+
 def with_connection(func):
     @functools.wraps(func)
     def _wrapper(*args, **kw):
         with _ConnectionCtx():
             return func(*args, **kw)
+
     return _wrapper
 
 
@@ -173,8 +183,10 @@ class _TransactionCtx(object):
         global _db_ctx
         _db_ctx.connection.rollback()
 
+
 def transaction():
     return _TransactionCtx()
+
 
 def with_transaction(func):
     @functools.wraps(func)
@@ -183,7 +195,9 @@ def with_transaction(func):
         with _TransactionCtx():
             return func(*args, **kw)
         _profiling(_start)
+
     return _wrapper
+
 
 def _select(sql, first, *args):
     global _db_ctx
@@ -205,9 +219,11 @@ def _select(sql, first, *args):
         if cursor:
             cursor.close()
 
+
 @with_connection
 def select_one(sql, *args):
     return _select(sql, True, *args)
+
 
 @with_connection
 def select_int(sql, *args):
@@ -216,9 +232,11 @@ def select_int(sql, *args):
         raise MultiColumnsError('返回值大于一列')
     return d.values()[0]
 
+
 @with_connection
 def select(sql, *args):
     return _select(sql, False, *args)
+
 
 @with_connection
 def _update(sql, *args):
@@ -235,15 +253,20 @@ def _update(sql, *args):
             logging.info('auto commit')
             _db_ctx.connection.commit()
         return r
+    except StandardError:
+        print '执行失败: %s' % sql
+        return -1
     finally:
         if cursor:
             cursor.close()
 
+
 def insert(table, **kw):
     cols, args = zip(*kw.iteritems())
-    sql = 'insert into `%s` (%s) values (%s)' % (table, ','.join(['`%s`' % col for col in cols]), ','.join(['?' for i in range(len(cols))]))
-    return _update(sql, args)
+    sql = 'insert into `%s` (%s) values (%s)' % (
+    table, ','.join(['`%s`' % col for col in cols]), ','.join(['?' for i in range(len(cols))]))
+    return _update(sql, *args)
+
 
 def update(sql, *args):
     return _update(sql, *args)
-
