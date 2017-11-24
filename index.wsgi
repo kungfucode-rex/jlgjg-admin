@@ -2,7 +2,7 @@ import sae.const
 import _mysql
 import web
 urls = ('/hello', 'hello')
-app = web.application(urls, globals())
+app = web.application(urls, globals()).wsgifunc()
 class hello:
     def GET(self):
         web.header('Content-Type', 'text/plain')
