@@ -35,12 +35,12 @@ def toDict(d):
     return D
 
 
-config = config_default.config
+configs = config_default.configs
 
 try:
     import config_override
 
-    config = merge(config, config_override.config)
+    config = merge(configs, config_override.configs)
 except ImportError:
     pass
-config = toDict(config)
+configs = toDict(configs)

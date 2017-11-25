@@ -4,7 +4,11 @@ from server.db import DBUtil
 
 
 def list(params):
-    users = User.find_by('limit %s,%s' % (params.offset, params.limit))
+    where = "where name like ? and cnname like ?"
+    pagestr = 'limit %s,%s' % (params.offset, params.limit)
+    name = '%' + params.name + '%'
+    cnname = '%' + params.cnname + '%'
+    users = User.find_by(where + pagestr, name, cnname)
     return json.dumps(users)
 
 

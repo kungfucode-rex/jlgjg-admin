@@ -1,7 +1,7 @@
-config = {}
+configs = {}
 try:
     import sae.const
-    config['db'] = {
+    configs['db'] = {
         'host': sae.const.MYSQL_HOST,
         'port': 3306,
         'db': sae.const.MYSQL_DB,

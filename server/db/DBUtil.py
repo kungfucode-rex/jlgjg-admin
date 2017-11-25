@@ -204,6 +204,7 @@ def _select(sql, first, *args):
     cursor = None
     sql = sql.replace('?', '%s')
     logging.info('SQL: %s, ARGS: %s' % (sql, args))
+    print 'SQL: %s, ARGS: %s' % (sql, args)
     try:
         cursor = _db_ctx.connection.cursor()
         cursor.execute(sql, args)
