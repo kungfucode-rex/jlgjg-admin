@@ -9,7 +9,15 @@ _COOKIE_KEY = configs.session.secret
 
 #除登录页和静态资源以外, 其它请求都必须登录认证
 def loginFilter(handler):
+    web.header("Access-Control-Allow-Origin", "http://localhost:8081")
+    web.header("Access-Control-Allow-Credentials", 'true')
+    web.header("Access-Control-Allow-Headers", 'Content-Type')
+    web.header("Access-Control-Allow-Methods", 'POST')
     result = None
+    if web.ctx.method in ['OPTIONS']:
+        response = web.storage()
+        response.status = 200
+        return response
     if not (web.ctx.path in configs.safePath or web.ctx.path.startswith('/static')):
         web.header('Content-Type', 'application/json')
         user = None

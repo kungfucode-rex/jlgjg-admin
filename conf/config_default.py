@@ -12,5 +12,9 @@ configs = {
     'session': {
         'secret': 'JLGJG'
     },
-    'safePath': ('/index', '/login')
+    'safePath': (
+        '/index',
+        '/getValidateCode',
+        '/login'
+    )
 }

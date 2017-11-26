@@ -8,6 +8,10 @@ module.exports = function (env) {
   }
 
   return {
-    apiGetUser: JSON.stringify(server + '/getUser')
+    apiUptokenUrl: JSON.stringify(server + '/getUptoken'),
+    apiUpDomain: JSON.stringify(server + '/getUpdomain'),
+    apiGetUser: JSON.stringify(server + '/getUser'),
+    apiLogin: JSON.stringify(server + '/login'),
+    apiGetValidateCode: JSON.stringify(server + '/getValidateCode')
   }
 };

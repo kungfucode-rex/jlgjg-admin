@@ -15,12 +15,14 @@
           <Icon type="key"></Icon>
         </span>
       </iInput>
-      <iInput v-model="validCode" size="large" class="valid-input" :maxlength="4" @on-change="refreshErrMsg" @on-keyup.enter="loginSubmit">
+      <iInput v-model="validateCode" size="large" class="valid-input" :maxlength="4" @on-change="refreshErrMsg" @on-keyup.enter="loginSubmit">
         <span slot="prepend">
           <div class="valid-code-label"> </div>
         </span>
         <span slot="append">
-          <div class="valid-code-img"></div>
+          <div class="valid-code-img">
+            <img :src="validateCodeImgUrl" @click="refreshValidateCode()">
+          </div>
         </span>
       </iInput>
       <p class="error-msg">{{errMsg}}</p>
@@ -39,7 +41,8 @@
       return {
         username: '',
         password: '',
-        validCode: '',
+        validateCode: '',
+        validateCodeImgUrl: apiGetValidateCode,
         neverSubmitted: true, // 从来没有提交过
         submitting: false, // 正在提交
         errMsg: ''
@@ -49,6 +52,9 @@
       ...mapActions([
         'login'
       ]),
+      refreshValidateCode () {
+        this.validateCodeImgUrl = this.validateCodeImgUrl.split('?')[0] + '?time=' + this.$moment()._d.getTime()
+      },
       loginSubmit () {
         this.neverSubmitted = false // 标识已经执行过提交方法
         this.refreshErrMsg() // 去校验是否有空项
@@ -84,9 +90,10 @@
             }
           }
         })
-        instance.post('http://localhost:8080/loginUrl', {
+        this.$http.post(`${apiLogin}`, {
           username: self.username,
-          password: self.password
+          password: self.password,
+          validateCode: self.validateCode
         }).then(response => {
           if (response.data.code === 200) {
             console.log('submit success...')
@@ -123,7 +130,7 @@
           if (this.password.trim() === '') {
             emptyStrArr.push('密码')
           }
-          if (this.validCode.trim() === '') {
+          if (this.validateCode.trim() === '') {
             emptyStrArr.push('验证码')
           }
           if (emptyStrArr.length > 0) {
@@ -182,13 +189,16 @@
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
+      .ivu-input-group-append
+        padding: 0px
       .valid-code-img
         width: 50px
-        height: 20px
-        background-image: url(../static/images/valid-img.png)
-        background-size: 60%;
+        background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
+        img
+          background: #eee
+          width: 50px
     .error-msg
       color: red
       font-size: 12px

@@ -6,10 +6,13 @@ import web, logging
 from server.web.filter.AuthorizeFilter import loginFilter
 logging.log_errors = '1'
 
-web.config.debug = True
+web.config.debug = False
 DBUtil.create_engine(**configs.db)
+
 app = web.application(urls, globals())
 
+session = web.session.Session(app, web.session.DiskStore('sessions'), initializer={'count': 0})
+web.config._session = session
 app.add_processor(loginFilter)
 
 if __name__ == '__main__':
