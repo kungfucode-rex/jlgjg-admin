@@ -10,10 +10,13 @@ web.config.debug = True
 DBUtil.create_engine(**configs.db)
 
 app = web.application(urls, globals())
+
 print configs.db.host
+
 db = web.database(
     dbn='mysql',
     host=configs.db.host,
+    port=configs.db.port,
     db=configs.db.db,
     user=configs.db.user,
     pw=configs.db.passwd)
