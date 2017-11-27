@@ -31,3 +31,10 @@ export const login = ({commit}, user) => {
 export const updateBreadcrumb = ({commit}, menus) => {
   commit('updateBreadcrumb', menus)
 }
+/**
+ * 完成拉取用户的动作, 再拉取之前不现实登录页面, 也不显示首页
+ * @param commit
+ */
+export const finishedGetUser = ({commit}) => {
+  commit('finishedGetUser')
+}

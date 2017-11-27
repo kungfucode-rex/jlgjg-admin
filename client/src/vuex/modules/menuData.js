@@ -1,9 +1,9 @@
 export default {
-  'enterprise': [{
-    text: '用户管理',
+  'oss': [{
+    text: '系统管理',
     subMenus: [{
-      text: '子用户管理',
-      name: 'enterprise_user_subuser_SubUser'
+      text: '用户管理',
+      name: 'oss_sysmanager_user_UserList'
     }]
   }]
 }

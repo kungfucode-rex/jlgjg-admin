@@ -3,7 +3,7 @@ from server.db.Models import User
 from server.web.service import User_S
 import web, time, hashlib, json
 from conf.config import configs
-from server.web.Utils import OK_Result, Error_Result
+from server.web.Utils import OK_Result, Error_Result, get_user_by_cookie
 
 _COOKIE_NAME = configs.cookie.name
 _COOKIE_KEY = configs.session.secret
@@ -12,7 +12,13 @@ _COOKIE_KEY = configs.session.secret
 # 列表
 class list_user:
     def GET(self):
-        return User_S.list(web.input(offset=0, limit=10))
+        try:
+            return OK_Result('',{
+                'list': User_S.list(web.input(pageOffset=0, pageLimit=10)),
+                'total': User_S.listCount(web.input())
+            })
+        except:
+            return Error_Result('查询失败')
 
 
 # getById
@@ -36,17 +42,30 @@ class login:
         msg = ''
         params = json.loads(web.data())
         user = User.find_first('where name=?', (params['username']))
-        if user is None:
+        if params['validateCode'].lower() != web.config._session['validateCode'].lower():
+            msg = '验证码不正确'
+        elif user is None:
             msg = '此用户不存在'
         elif user.password != params['password']:
-            msg = '用户验证失败'
-        max_age = 604800
-        cookie = make_signed_cookie(user.id, user.password, max_age)
-        web.setcookie(_COOKIE_NAME, cookie, max_age)
+            msg = '用户或密码错误'
         if msg == '':
-            return OK_Result('用户验证成功', [user])
+            max_age = 604800
+            cookie = make_signed_cookie(user.id, user.password, max_age)
+            web.setcookie(_COOKIE_NAME, cookie, max_age)
+            return OK_Result('用户验证成功', user)
         else:
-            return Error_Result('用户验证失败')
+            return Error_Result(msg)
+
+
+class get_user:
+    def GET(self):
+        return OK_Result('获取用户成功', get_user_by_cookie(web.cookies().get(_COOKIE_NAME)))
+
+
+class login_out:
+    def GET(self):
+        web.setcookie(_COOKIE_NAME, '', 0)
+        return OK_Result('注销成功')
 
 
 def make_signed_cookie(id, password, max_age):

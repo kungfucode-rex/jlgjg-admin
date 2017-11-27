@@ -330,8 +330,9 @@
             } else {
               resultData = response.data
             }
-            self.queryList.data = resultData.data
-            self.queryList.total = resultData.total
+            debugger
+            self.queryList.data = resultData.data.list
+            self.queryList.total = resultData.data.total
             // 表格加载完成后，给queryList.selection中装载数据
             self.$nextTick(() => {
               if (this.queryList.selectable === true) {

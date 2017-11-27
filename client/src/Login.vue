@@ -36,6 +36,7 @@
 </template>
 <script type="text/javascript">
   import {mapActions} from 'vuex'
+  import MD5 from 'crypto-js/md5'
   export default {
     data () {
       return {
@@ -92,20 +93,19 @@
         })
         this.$http.post(`${apiLogin}`, {
           username: self.username,
-          password: self.password,
+          password: MD5(self.password).toString(),
           validateCode: self.validateCode
         }).then(response => {
           if (response.data.code === 200) {
             console.log('submit success...')
             // 登录成功
-            response.data.user.name = '管理员'
-            self.login(response.data.user)
-            console.log(response.data.user)
+            self.login(response.data.data)
+            console.log(response.data.data)
             this.submitting = false
           } else {
             console.log('submit failed...')
             // 登录失败
-            self.errMsg = response.data.errMsg
+            self.refreshErrMsg(response.data.msg)
             this.submitting = false
           }
         }).catch(e => {

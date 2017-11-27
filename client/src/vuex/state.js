@@ -7,13 +7,14 @@ import menus from './modules/menuData'
 import config from '../../config/config'
 export default {
   user: null,
+  getUserFinished: false,
   selectedMenus: [], // 选中的菜单数组
-  activeRootMenuId: 'enterprise', // 选中的主菜单
+  activeRootMenuId: 'oss', // 选中的主菜单
   menus: menus, // 所有菜单
   rootMenus: { // 主菜单
-    'enterprise': {
+    'oss': {
       name: '企业后台',
-      routerPath: 'enterprise'
+      routerPath: 'oss'
     }
   },
   ...config

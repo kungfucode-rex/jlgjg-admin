@@ -1,12 +1,14 @@
 <template>
   <div id="app">
-    <template v-if="this.$store.state.user">
-      <PageHeader></PageHeader>
-      <PageContent></PageContent>
-      <PageFooter></PageFooter>
-    </template>
-    <template v-else>
-      <Login></Login>
+    <template v-if="this.$store.state.getUserFinished">
+      <template v-if="this.$store.state.user">
+        <PageHeader></PageHeader>
+        <PageContent></PageContent>
+        <PageFooter></PageFooter>
+      </template>
+      <template v-else>
+        <Login></Login>
+      </template>
     </template>
   </div>
 </template>

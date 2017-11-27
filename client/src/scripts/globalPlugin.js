@@ -79,6 +79,7 @@ export default {
           store.commit('login', response.data.data)
           Vue.prototype.$loginUser = response.data.data
         }
+        store.commit('finishedGetUser')
       })
     // 加载进度条开始
     router.beforeEach((to, from, next) => {

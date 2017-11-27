@@ -7,8 +7,8 @@ export default {
     domain: apiUpDomain
   },
   pagerConfig: {
-    pageSize: 'backPageSize',
+    pageSize: 'pageLimit',
     // pageIndex: 'backPageIndex',
-    pageOffset: 'backPageOffset'
+    pageOffset: 'pageOffset'
   }
 }

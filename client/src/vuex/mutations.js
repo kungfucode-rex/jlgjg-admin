@@ -11,6 +11,13 @@ export default {
     state.user = user
   },
   /**
+   * 完成拉取用户的动作, 再拉取之前不现实登录页面, 也不显示首页
+   * @param state
+   */
+  finishedGetUser (state) {
+    state.getUserFinished = true
+  },
+  /**
    * 用户注销
    * @param state
    */

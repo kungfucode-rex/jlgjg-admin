@@ -15,9 +15,9 @@
         <Submenu name="1">
           <template slot="title">
             <Icon type="stats-bars"></Icon>
-            {{this.$store.state.user.name}}
+            {{this.$store.state.user.cnname}}
           </template>
-          <Menu-item name="1-1" @click.native="logout">退出登录</Menu-item>
+          <Menu-item name="1-1" @click.native="exit">退出登录</Menu-item>
         </Submenu>
       </Menu>
     </div>
@@ -36,11 +36,16 @@
     },
     methods: {
       ...mapActions([
-        'changeactiveRootMenuId'
+        'changeactiveRootMenuId',
+        'logout'
       ]),
-      logout () {
+      exit () {
         // eslint-disable-next-line no-undef
-        this.$http.get(apiLogout)
+        this.$http.get(apiLogout).then(response => {
+          if (response.data.code === 200) {
+            this.logout()
+          }
+        })
       }
     }
   }
