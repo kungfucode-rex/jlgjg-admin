@@ -37,7 +37,7 @@ def gen_line(draw, width, height):
 def gen_code():
     width, height = vcodeSize
     image = Image.new('RGBA', (width, height), vcodeBgcolor)
-    font = ImageFont.truetype('/System/Library/Fonts/Arial.ttf', 25)
+    font = ImageFont.truetype('Arial.ttf', 25)
     draw = ImageDraw.Draw(image)
     text = gen_text()
     font_width, font_height = font.getsize(text)
