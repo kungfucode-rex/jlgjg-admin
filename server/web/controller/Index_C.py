@@ -46,7 +46,6 @@ def gen_code():
         gen_line(draw, width, height)
     image = image.transform((width + 20, height + 10), Image.AFFINE, (1, -0.3, 0, -0.1, 1, 0), Image.BILINEAR)
     #image = image.filter(ImageFilter.EDGE_ENHANCE_MORE)
-    image.save('idencode.png')
     out = StringIO()
     image.save(out, 'png', quality=75)
     return out.getvalue()
