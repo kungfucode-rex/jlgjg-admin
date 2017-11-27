@@ -11,6 +11,8 @@ DBUtil.create_engine(**configs.db)
 
 app = web.application(urls, globals())
 
+print configs.db.host
+
 db = web.database(
     dbn='mysql',
     host=configs.db.host,
