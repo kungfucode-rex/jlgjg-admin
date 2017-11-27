@@ -6,7 +6,7 @@ import web, logging
 from server.web.filter.AuthorizeFilter import loginFilter
 logging.log_errors = '1'
 
-web.config.debug = False
+web.config.debug = True
 DBUtil.create_engine(**configs.db)
 
 app = web.application(urls, globals())
