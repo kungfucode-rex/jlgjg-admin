@@ -16,6 +16,7 @@ print configs.db.host
 db = web.database(
     dbn='mysql',
     host=configs.db.host,
+    port=configs.db.port,
     db=configs.db.db,
     user=configs.db.user,
     pw=configs.db.passwd)
