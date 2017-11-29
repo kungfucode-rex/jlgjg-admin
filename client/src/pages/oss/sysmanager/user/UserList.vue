@@ -39,7 +39,8 @@
               align: 'center',
               render: (h, params) => {
                 return this.$getListOperationBtns(h, params, [
-                  {label: '编辑', handler: this.edit}
+                  {label: '编辑', handler: this.edit},
+                  {label: '删除', type: 'error', handler: this.delete}
                 ])
               }
             }
@@ -49,10 +50,27 @@
     },
     methods: {
       add () {
-
+        this.$load('UserAdd')
       },
-      edit () {
-
+      edit (params) {
+        this.$load('UserEdit', {id: params.row.id})
+      },
+      delete (params) {
+        let self = this
+        self.$Modal.confirm({
+          title: '提示',
+          content: '确认要删除用户 ' + params.row.name + '?',
+          onOk () {
+            this.$http.post(`${apiUserDelete}`, {
+              id: params.row.id
+            }).then(response => {
+              if (response.data.code === 200) {
+                self.$Message.success('删除成功')
+                self.queryList.reload()
+              }
+            })
+          }
+        })
       }
     }
   }

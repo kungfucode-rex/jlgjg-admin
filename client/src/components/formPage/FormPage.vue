@@ -301,7 +301,7 @@
           self.$http.post(rule.remote, _postData)
             .then((response) => {
               console.log(response.data)
-              if (response.data === false) {
+              if (response.data === false || response.data === 'False') {
                 errors.push(rule.message)
                 callback(errors)
               } else {
@@ -358,7 +358,7 @@
                 self.$http(ajaxConfig)
                   .then(response => {
                     self.submitDisabled = false
-                    if (response.status === 200) {
+                    if (response.status === 200 && response.data.code === 200) {
                       // 如果有afterSubmit
                       if (self.formConfig.afterSubmit) {
                         self.formConfig.afterSubmit(response)

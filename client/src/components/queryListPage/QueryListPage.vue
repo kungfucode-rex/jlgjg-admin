@@ -330,7 +330,6 @@
             } else {
               resultData = response.data
             }
-            debugger
             self.queryList.data = resultData.data.list
             self.queryList.total = resultData.data.total
             // 表格加载完成后，给queryList.selection中装载数据
