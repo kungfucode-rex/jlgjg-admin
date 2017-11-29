@@ -19,8 +19,11 @@ def listCount(params):
     return total
 
 
+def getByName(params):
+    return User.find_by('where name = ?', params.name)
+
 def getById(params):
-    return json.dumps(User.get(params.id))
+    return User.get(params.id)
 
 
 def add(params):
@@ -30,3 +33,9 @@ def add(params):
         cnname=params.cnname,
         password=params.password)
     return user.insert()
+
+def update(user):
+    return user.update()
+
+def delete(user):
+    return user.delete()

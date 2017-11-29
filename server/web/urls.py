@@ -7,7 +7,11 @@ urls = (
     '/login', 'login',
     '/getUser', 'get_user',
     '/loginOut', 'login_out',
+
     "/user/list", "list_user",
-    '/user', 'get_user_by_id',
-    '/user/add', 'add_user'
+    "/user/isAvailableUserName", "is_available_name",
+    '/user/byId', 'get_user_by_id',
+    '/user/add', 'add_user',
+    '/user/delete', 'delete_user',
+    '/user/edit', 'edit_user'
 )

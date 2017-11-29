@@ -1,3 +1,4 @@
+# -*- coding=utf8
 import json
 from conf.config import configs
 import web, time, hashlib
@@ -5,8 +6,37 @@ from server.db.Models import User
 
 _COOKIE_KEY = configs.session.secret
 
+class Dict(dict):
+    def __init__(self, name=(), values=(), **kw):
+        super(Dict, self).__init__(**kw)
+        for k, v in zip(name, values):
+            self[k] = v
 
-def OK_Result(msg, data=[]):
+    def __getattr__(self, key):
+        try:
+            return self[key]
+        except KeyError:
+            raise AttributeError('没找到属性 %s' % key)
+
+def toDict(d):
+    D = Dict()
+    for k, v in d.iteritems():
+        D[k] = toDict(v) if isinstance(v, dict) else v
+    return D
+
+def merge(defaults, override):
+    r = {}
+    for k, v in defaults.iteritems():
+        if k in override:
+            if isinstance(v, dict):
+                r[k] = merge(v, override[k])
+            else:
+                r[k] = override[k]
+        else:
+            r[k] = v
+    return r
+
+def OK_Result(msg='操作成功', data=[]):
     result = {
         'code': 200,
         'msg': msg,
@@ -15,7 +45,7 @@ def OK_Result(msg, data=[]):
     return json.dumps(result)
 
 
-def Error_Result(msg, data=[]):
+def Error_Result(msg='操作失败', data=[]):
     result = {
         'code': 400,
         'msg': msg,

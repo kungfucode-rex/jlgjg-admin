@@ -43,7 +43,9 @@ export default {
             response.data.status_code
           errorInfo.desc = response.data.message ||
             response.data.msg
-          Vue.prototype.$Notice.error(errorInfo)
+          if (errorInfo.desc !== '请登录') {
+            Vue.prototype.$Notice.error(errorInfo)
+          }
         }
         return response
       },

@@ -3,7 +3,7 @@ from server.db.Models import User
 from server.web.service import User_S
 import web, time, hashlib, json
 from conf.config import configs
-from server.web.Utils import OK_Result, Error_Result, get_user_by_cookie
+from server.web.Utils import *
 
 _COOKIE_NAME = configs.cookie.name
 _COOKIE_KEY = configs.session.secret
@@ -21,20 +21,57 @@ class list_user:
             return Error_Result('查询失败')
 
 
+# is_available_name
+class is_available_name:
+    def POST(self):
+        params = toDict(json.loads(web.data()))
+        user = User_S.getByName(params)
+        if params.name == params.oldName:
+            return True
+        else:
+            return user == '[]'
+
 # getById
 class get_user_by_id:
     def GET(self):
-        return User_S.getById(web.input())
+        try:
+            return OK_Result('',User_S.getById(web.input()))
+        except:
+            return Error_Result('查询失败')
 
 
 # 新增
 class add_user:
     def POST(self):
-        result = User_S.add(web.input())
+        params = toDict(json.loads(web.data()))
+        result = User_S.add(params)
         if result != -1:
             return OK_Result('新增用户成功')
         else:
             return Error_Result('新增用户失败')
+
+# 删除
+class delete_user:
+    def POST(self):
+        try:
+            params = toDict(json.loads(web.data()))
+            user = User(**params)
+            User_S.delete(user)
+            return OK_Result('操作成功')
+        except:
+            return Error_Result('操作失败')
+
+# 修改
+class edit_user:
+    def POST(self):
+        try:
+            params = toDict(json.loads(web.data()))
+            user = User_S.getById(params)
+            newUser = User(**merge(user, params))
+            User_S.update(newUser)
+            return OK_Result()
+        except:
+            return Error_Result()
 
 
 class login:

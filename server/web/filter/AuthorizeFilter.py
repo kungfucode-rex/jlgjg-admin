@@ -8,6 +8,7 @@ _COOKIE_NAME = configs.cookie.name
 
 #除登录页和静态资源以外, 其它请求都必须登录认证
 def loginFilter(handler):
+    web.config._session['keepsession'] = True
     web.header("Access-Control-Allow-Origin", "http://localhost:8081")
     web.header("Access-Control-Allow-Credentials", 'true')
     web.header("Access-Control-Allow-Headers", 'Content-Type')
