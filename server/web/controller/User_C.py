@@ -73,6 +73,23 @@ class edit_user:
         except:
             return Error_Result()
 
+# 修改密码
+class change_pwd:
+    def POST(self):
+        try:
+            params = toDict(json.loads(web.data()))
+            users = User_S.getByIdAndPwd(params)
+            if len(users) == 0:
+                return Error_Result("旧密码错误")
+            else:
+                user = users[0]
+                newUser = User(**merge(user, {'password':params.newPassword}))
+                User_S.update(newUser)
+                return OK_Result()
+        except:
+            return Error_Result()
+
+
 
 class login:
     def POST(self):

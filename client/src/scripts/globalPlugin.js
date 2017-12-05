@@ -29,10 +29,8 @@ export default {
     // 如果response的code是400401, 则跳到登录页面
     Vue.axios.interceptors.response.use(
       function (response) {
-        if (response.data.code === 401001) {
-          const oldUrl = window.location.href;
-          // eslint-disable-next-line no-undef
-          window.location.href = apiLoginURL + oldUrl;
+        if (response.data.code === 401) {
+          store.commit('loginout')
         } else if (response.data.code && response.data.code !== 200) {
           let errorInfo = {
             title: '请求错误',
@@ -63,9 +61,10 @@ export default {
             desc: '原因未知'
           }
           if (error.response) {
-            errorInfo.title = error.response.data.name ||
+            /* errorInfo.title = error.response.data.name ||
               error.response.data.code ||
-              error.response.data.status_code
+              error.response.data.status_code */
+            errorInfo.title = '失败'
             errorInfo.desc = error.response.data.message ||
               error.response.data.msg
           }

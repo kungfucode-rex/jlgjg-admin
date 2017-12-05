@@ -45,7 +45,7 @@ def OK_Result(msg='操作成功', data=[]):
     return json.dumps(result)
 
 
-def Error_Result(msg='操作失败', data=[]):
+def Error_Result(msg='操作失败', data=[], code=400):
     result = {
         'code': 400,
         'msg': msg,

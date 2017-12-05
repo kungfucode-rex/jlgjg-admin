@@ -6,4 +6,4 @@ class User(Model):
     id = IntegerField(primary_key=True)
     name = StringField()
     cnname = StringField()
-    password = StringField(ddl='varchar(20)')
+    password = StringField(ddl='varchar(50)')

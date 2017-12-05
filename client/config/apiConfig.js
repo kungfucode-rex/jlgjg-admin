@@ -21,6 +21,7 @@ module.exports = function (env) {
     apiUserEdit: JSON.stringify(server + '/user/edit'),
     apiUserById: JSON.stringify(server + '/user/byId'),
     apiUserDelete: JSON.stringify(server + '/user/delete'),
+    apiChangePwd: JSON.stringify(server + '/user/pwd'),
     apiIsAvailabeUserName: JSON.stringify(server + '/user/isAvailableUserName')
   }
 };

@@ -18,16 +18,84 @@
             {{this.$store.state.user.cnname}}
           </template>
           <Menu-item name="1-1" @click.native="exit">退出登录</Menu-item>
+          <Menu-item name="1-2" @click.native="openChangePwdModal">修改密码</Menu-item>
         </Submenu>
       </Menu>
     </div>
+    <Modal
+      v-model="showPwdModal"
+      title="修改密码"
+      :loading="pwdModalLoading"
+      :mask-closable="false"
+      @on-ok="this.changePwd">
+      <FormPage ref="pwdModalForm"
+                :form-config="pwdModalFormConfig">
+      </FormPage>
+    </Modal>
   </div>
 </template>
 <script>
   import {mapGetters, mapActions} from 'vuex'
+  import MD5 from 'crypto-js/md5'
   export default {
     data () {
-      return {}
+      return {
+        showPwdModal: false,
+        pwdModalLoading: true,
+        pwdModalFormConfig: {
+          formStyle: {
+            width: '100%'
+          },
+          justFormItems: true,
+          formModel: {},
+          formItems: {
+            password: {
+              type: 'text',
+              config: {
+                isPassword: true
+              },
+              label: '旧密码'
+            },
+            newPassword: {
+              type: 'text',
+              config: {
+                isPassword: true
+              },
+              maxlength: 20,
+              label: '新密码'
+            },
+            confirmPassword: {
+              type: 'text',
+              config: {
+                isPassword: true
+              },
+              label: '确认密码'
+            }
+          },
+          formRules: {
+            password: [
+              {required: true, message: '不能为空'}
+            ],
+            newPassword: [
+              {required: true, message: '不能为空'},
+              {type: 'string', min: 6, max: 20, message: '6~20位'}
+            ],
+            confirmPassword: [
+              {required: true, message: '不能为空'},
+              {
+                validator: (rule, value, callback, source, options) => {
+                  if (value !== this.pwdModalFormConfig.formModel.newPassword) {
+                    callback(new Error('两次密码输入不一致'))
+                  } else {
+                    callback()
+                  }
+                },
+                trigger: 'blur'
+              }
+            ]
+          }
+        }
+      }
     },
     computed: {
       ...mapGetters([
@@ -45,6 +113,31 @@
           if (response.data.code === 200) {
             this.logout()
           }
+        })
+      },
+      openChangePwdModal () {
+        this.$refs['pwdModalForm'].resetFields()
+        this.showPwdModal = true
+      },
+      changePwd () {
+        this.pwdModalLoading = false
+        this.$refs['pwdModalForm'].validate((valid, formData) => {
+          if (valid) {
+            let url = `${apiChangePwd}`
+            formData.password = MD5(formData.password).toString()
+            formData.newPassword = MD5(formData.newPassword).toString()
+            formData.id = this.$loginUser.id
+            this.$http.post(url, formData).then(response => {
+              if (response.data.code === 200) {
+                this.$Message.success('操作成功')
+                this.$refs['pwdModalForm'].resetFields()
+                this.showPwdModal = false
+              }
+            })
+          }
+        })
+        this.$nextTick(() => {
+          this.pwdModalLoading = true
         })
       }
     }

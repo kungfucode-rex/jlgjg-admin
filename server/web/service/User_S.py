@@ -22,6 +22,9 @@ def listCount(params):
 def getByName(params):
     return User.find_by('where name = ?', params.name)
 
+def getByIdAndPwd(params):
+    return User.find_by('where id = ? and password = ? ', params.id, params.password)
+
 def getById(params):
     return User.get(params.id)
 

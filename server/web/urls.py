@@ -11,6 +11,7 @@ urls = (
     "/user/list", "list_user",
     "/user/isAvailableUserName", "is_available_name",
     '/user/byId', 'get_user_by_id',
+    '/user/pwd', 'change_pwd',
     '/user/add', 'add_user',
     '/user/delete', 'delete_user',
     '/user/edit', 'edit_user'

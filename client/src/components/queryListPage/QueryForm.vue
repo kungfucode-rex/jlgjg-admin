@@ -518,5 +518,5 @@
     .margin-top
       margin-top: -1px
       label
-        margin-top: 1px
+        margin-top: 0.5px
 </style>

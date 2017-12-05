@@ -36,7 +36,6 @@
         flex-grow: 1
         background-color: #fff
         margin: 10px
-        z-index: 22
         padding: 10px
         box-shadow: 0 2px 5px 0 rgba(0,0,0,0.24)
         height: calc(100% - 60px)
