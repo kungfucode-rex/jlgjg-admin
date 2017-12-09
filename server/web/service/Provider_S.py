@@ -1,9 +1,10 @@
 # -*- coding=utf8
 from server.db.Models import Provider
 from server.db import DBUtil
+import time
 
 def list(params):
-    where = "where no like ? and name like ? "
+    where = "where no like ? and name like ?  order by no "
     pagestr = 'limit %s,%s' % (params.pageOffset, params.pageLimit)
     no = '%' + params.no + '%'
     name = '%' + params.name + '%'
@@ -26,7 +27,7 @@ def getByNo(params):
 def add(params):
     provider = Provider(
         id=DBUtil.next_id(),
-        no=params.no,
+        no=getNewNo(),
         name = params.name,
         code = params.code,
         shuiwu = params.shuiwu,
@@ -40,7 +41,7 @@ def add(params):
         fax = params.fax,
         comment = params.comment,
         creater = params.creater,
-        createtime = params.createtime,
+        createtime = int(time.time() * 1000),
     )
     return provider.insert()
 
@@ -49,3 +50,14 @@ def update(provider):
 
 def delete(provider):
     return provider.delete()
+
+def getNewNo():
+    sql = 'select max(no) from provider'
+    results = DBUtil.select(sql)
+    maxNo = results[0]['max(no)']
+    if maxNo != '':
+        newNo = 'G' + str(int(maxNo.replace('G', '1')) + 1)[1:]
+        return newNo
+    else:
+        # 没有记录，新创建一个
+        return 'G00001'

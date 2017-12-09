@@ -49,3 +49,10 @@ class edit_customer:
             return OK_Result()
         except:
             return Error_Result()
+
+class get_new_customer_no:
+    def GET(self):
+        try:
+            return json.dumps({'no': Customer_S.getNewNo()})
+        except:
+            return Error_Result()

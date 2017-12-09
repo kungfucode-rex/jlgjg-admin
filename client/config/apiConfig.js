@@ -22,6 +22,18 @@ module.exports = function (env) {
     apiUserById: JSON.stringify(server + '/user/byId'),
     apiUserDelete: JSON.stringify(server + '/user/delete'),
     apiChangePwd: JSON.stringify(server + '/user/pwd'),
-    apiIsAvailabeUserName: JSON.stringify(server + '/user/isAvailableUserName')
+    apiIsAvailabeUserName: JSON.stringify(server + '/user/isAvailableUserName'),
+    // Provider
+    apiProviderList: JSON.stringify(server + '/provider/list'),
+    apiProviderAdd: JSON.stringify(server + '/provider/add'),
+    apiProviderEdit: JSON.stringify(server + '/provider/edit'),
+    apiProviderById: JSON.stringify(server + '/provider/byId'),
+    apiProviderDelete: JSON.stringify(server + '/provider/delete'),
+    // Customer
+    apiCustomerList: JSON.stringify(server + '/customer/list'),
+    apiCustomerAdd: JSON.stringify(server + '/customer/add'),
+    apiCustomerEdit: JSON.stringify(server + '/customer/edit'),
+    apiCustomerById: JSON.stringify(server + '/customer/byId'),
+    apiCustomerDelete: JSON.stringify(server + '/customer/delete')
   }
 };

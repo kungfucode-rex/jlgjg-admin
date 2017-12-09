@@ -1,7 +1,7 @@
 # -*- coding=utf8
 from server.db.Models import Customer
 from server.db import DBUtil
-
+import time
 def list(params):
     where = 'where no like ? and name like ? '
     pagestr = 'limit %s,%s' % (params.pageOffset, params.pageLimit)
@@ -26,7 +26,7 @@ def getByNo(params):
 def add(params):
     customer = Customer(
         id = DBUtil.next_id(),
-        no = params.no,
+        no = getNewNo(),
         name = params.name,
         code = params.code,
         shuiwu = params.shuiwu,
@@ -41,7 +41,7 @@ def add(params):
         fax = params.fax,
         comment = params.comment,
         creater = params.creater,
-        createtime = params.createtime
+        createtime = int(time.time() * 1000),
     )
     return customer.insert()
 
@@ -50,3 +50,14 @@ def update(customer):
 
 def delete(customer):
     return customer.delete()
+
+def getNewNo():
+    sql = 'select max(no) from customer'
+    results = DBUtil.select(sql)
+    maxNo = results[0]['max(no)']
+    if maxNo != '':
+        newNo = 'K' + str(int(maxNo.replace('K', '1')) + 1)[1:]
+        return newNo
+    else:
+        # 没有记录，新创建一个
+        return 'K00001'

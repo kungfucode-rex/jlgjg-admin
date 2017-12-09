@@ -25,12 +25,14 @@ urls = (
     '/provider/delete', 'delete_provider',
     '/provider/edit', 'edit_provider',
     '/provider/byId', 'get_provider_by_id',
+    '/provider/newNo', 'get_new_provider_no',
 
     '/customer/list', 'list_customer',
     '/customer/add', 'add_customer',
     '/customer/delete', 'delete_customer',
     '/customer/edit', 'edit_customer',
     '/customer/byId', 'get_customer_by_id',
+    '/customer/newNo', 'get_new_customer_no',
 
     '/goods/list', 'list_goods',
     '/goods/add', 'add_goods',

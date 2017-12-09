@@ -51,3 +51,10 @@ class edit_provider:
             return OK_Result()
         except:
             return Error_Result()
+
+class get_new_provider_no:
+    def GET(self):
+        try:
+            return json.dumps({'no': Provider_S.getNewNo()})
+        except:
+            return Error_Result()
