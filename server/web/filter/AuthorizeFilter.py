@@ -24,7 +24,7 @@ def loginFilter(handler):
         cookie = web.cookies().get(_COOKIE_NAME)
         if cookie:
             user = get_user_by_cookie(cookie)
-        if user == None:
+        if user != None:
             print '没有登录'
             result = Error_Result('请登录', [], 401)
         else:

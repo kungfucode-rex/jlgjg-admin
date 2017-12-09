@@ -29,7 +29,7 @@
       <Button type="primary" size="large" long
               :disabled="!!errMsg || submitting"
               @click="loginSubmit">登录</Button>
-      <div class="tip-msg">注：如忘记密码，请联系您的渠道经理申请找回</div>
+      <div class="tip-msg">注：如忘记密码，请联系管理员申请找回</div>
     </Card>
     <div class="login-mark-div"></div>
   </div>
