@@ -58,6 +58,26 @@ class Goods(Model):
     quantity = FloatField()
     aprice = FloatField()
 
+class Buy(Model):
+    __table__ = 'buy'
+    id = StringField(primary_key=True)
+    no = StringField()
+    provider_no = StringField()
+    provider_name = StringField()
+    goods_no = StringField()
+    goods_name = StringField()
+    goods_guige = StringField()
+    goods_unit = StringField()
+    quantity = FloatField()
+    price = FloatField()
+    money = FloatField()
+    aprice_before = FloatField()
+    aprice_after = FloatField()
+    creater = StringField()
+    creater_name = StringField()
+    createtime = IntegerField()
+
+
 class Taizhang(Model):
     __table__ = 'taizhang'
     id = StringField(primary_key=True)

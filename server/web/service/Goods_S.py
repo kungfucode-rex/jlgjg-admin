@@ -20,13 +20,17 @@ def listCount(params):
 def getById(params):
     return Goods.get(params.id)
 
+def blurQueryByName(params):
+    name = '%' + params.name + '%'
+    return Goods.find_by('where name like ?', name)
+
 def getByNo(params):
     return Goods.find_by('where no = ?', params.no)
 
 def add(params):
     goods = Goods(
         id=DBUtil.next_id(),
-        no= params.no,
+        no= getNewNo(),
         name = params.name,
         guige = params.guige,
         unit = params.unit,
@@ -41,3 +45,14 @@ def update(goods):
 
 def delete(goods):
     return goods.delete()
+
+def getNewNo():
+    sql = 'select max(no) from goods'
+    results = DBUtil.select(sql)
+    maxNo = results[0]['max(no)']
+    if maxNo != '':
+        newNo = 'S' + str(int(maxNo.replace('S', '1')) + 1)[1:]
+        return newNo
+    else:
+        # 没有记录，新创建一个
+        return 'S0001'

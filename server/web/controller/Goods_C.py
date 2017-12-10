@@ -22,6 +22,13 @@ class get_goods_by_id:
         except:
             return Error_Result()
 
+class blur_query_goods_by_name:
+    def GET(self):
+        try:
+            return OK_Result('', Goods_S.blurQueryByName(web.input()))
+        except:
+            return Error_Result()
+
 class add_goods:
     def POST(self):
         params = toDict(json.loads(web.data()))

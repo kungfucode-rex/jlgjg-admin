@@ -29,11 +29,22 @@ module.exports = function (env) {
     apiProviderEdit: JSON.stringify(server + '/provider/edit'),
     apiProviderById: JSON.stringify(server + '/provider/byId'),
     apiProviderDelete: JSON.stringify(server + '/provider/delete'),
+    apiProviderByName: JSON.stringify(server + '/provider/byName'),
     // Customer
     apiCustomerList: JSON.stringify(server + '/customer/list'),
     apiCustomerAdd: JSON.stringify(server + '/customer/add'),
     apiCustomerEdit: JSON.stringify(server + '/customer/edit'),
     apiCustomerById: JSON.stringify(server + '/customer/byId'),
-    apiCustomerDelete: JSON.stringify(server + '/customer/delete')
+    apiCustomerDelete: JSON.stringify(server + '/customer/delete'),
+    // Goods
+    apiGoodsList: JSON.stringify(server + '/goods/list'),
+    apiGoodsAdd: JSON.stringify(server + '/goods/add'),
+    apiGoodsEdit: JSON.stringify(server + '/goods/edit'),
+    apiGoodsById: JSON.stringify(server + '/goods/byId'),
+    apiGoodsDelete: JSON.stringify(server + '/goods/delete'),
+    apiGoodsByName: JSON.stringify(server + '/goods/byName'),
+    // Buy
+    apiBuyList: JSON.stringify(server + '/buy/list'),
+    apiBuyAdd: JSON.stringify(server + '/buy/add')
   }
 };

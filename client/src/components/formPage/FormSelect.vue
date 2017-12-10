@@ -8,6 +8,9 @@
       <div slot="content">{{field.desc}}</div>
     </Tooltip>
     <Select v-model="formModel[name]"
+            :remote="field.config.remoteMethod ? true : false"
+            :remote-method="field.config.remoteMethod"
+            :not-found-text="'请选择'"
             :placeholder="field.placeholder || '请选择'"
             :disabled="field.disabled"
             :clearSingleSelect="true"
@@ -15,6 +18,7 @@
             :label-in-value="true"
             :multiple="field.config.multiple"
             @on-change="changeHandler"
+            :loading="field.config.loading"
             :filterable="field.config.filterable">
       <template v-if="field.config.data && field.config.data.constructor === Array" v-for="item in field.config.data">
         <Option :value="item.value" :key="item.value">{{ item.label }}</Option>

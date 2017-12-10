@@ -1,3 +1,26 @@
+create table buy
+(
+	id varchar(50) not null
+		primary key,
+	no varchar(20) null comment '购货单号',
+	provider_no varchar(20) null comment '供应商编号',
+	provider_name varchar(100) null comment '供应商名称',
+	goods_no varchar(20) null comment '商品编号',
+	goods_name varchar(100) null comment '商品名称',
+	goods_guige varchar(50) null comment '商品规格',
+	goods_unit varchar(10) null comment '商品单位',
+	quantity float null comment '购买数量',
+	price float null comment '单价',
+	money float null comment '数量',
+	aprice_after float null comment '买后加权平均单价',
+	aprice_before float null comment '买前加权平均单价',
+	creater varchar(50) null comment '购买人',
+	creater_name varchar(50) null,
+	createtime bigint null comment '购买时间'
+)
+comment '购货清单表' engine=InnoDB
+;
+
 create table customer
 (
 	id varchar(50) not null comment '主键'

@@ -14,6 +14,13 @@ class list_provider:
         except:
             return Error_Result('查询失败')
 
+class blur_query_provider_by_name:
+    def GET(self):
+        try:
+            return OK_Result('', Provider_S.blurQueryByName(web.input()))
+        except:
+            return Error_Result()
+
 # getById
 class get_provider_by_id:
     def GET(self):

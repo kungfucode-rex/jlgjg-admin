@@ -15,10 +15,10 @@ export default {
     text: '商品管理',
     subMenus: [{
       text: '商品库存信息',
-      name: 'oss_sysmanager_user_UserList'
+      name: 'oss_goods_storage_GoodsList'
     }, {
       text: '购买商品',
-      name: 'oss_sysmanager_provider_ProviderList'
+      name: 'oss_goods_buy_BuyList'
     }, {
       text: '销售商品',
       name: 'oss_sysmanager_customer_CustomerList'
@@ -26,7 +26,7 @@ export default {
   }, {
     text: '账目查询',
     subMenus: [{
-      text: '台账查询',
+      text: '台账明细',
       name: 'oss_sysmanager_user_UserList'
     }, {
       text: '收款查询',

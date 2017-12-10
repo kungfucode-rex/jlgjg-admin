@@ -24,6 +24,10 @@ def getById(params):
 def getByNo(params):
     return Provider.find_by('where no = ?', params.no)
 
+def blurQueryByName(params):
+    name = '%' + params.name + '%'
+    return Provider.find_by('where name like ?', name)
+
 def add(params):
     provider = Provider(
         id=DBUtil.next_id(),

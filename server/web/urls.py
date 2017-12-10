@@ -4,6 +4,7 @@ from controller.Provider_C import *
 from controller.Customer_C import *
 from controller.Goods_C import *
 from controller.Taizhang_C import *
+from controller.Buy_C import *
 
 urls = (
     '/index', 'index',
@@ -26,6 +27,7 @@ urls = (
     '/provider/edit', 'edit_provider',
     '/provider/byId', 'get_provider_by_id',
     '/provider/newNo', 'get_new_provider_no',
+    '/provider/byName', 'blur_query_provider_by_name',
 
     '/customer/list', 'list_customer',
     '/customer/add', 'add_customer',
@@ -39,6 +41,10 @@ urls = (
     '/goods/delete', 'delete_goods',
     '/goods/edit', 'edit_goods',
     '/goods/byId', 'get_goods_by_id',
+    '/goods/byName', 'blur_query_goods_by_name',
+
+    '/buy/list', 'list_buy',
+    '/buy/add', 'buy',
 
     '/taizhang/list', 'list_taizhang',
     '/taizhang/add', 'add_taizhang',
