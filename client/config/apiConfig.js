@@ -45,6 +45,11 @@ module.exports = function (env) {
     apiGoodsByName: JSON.stringify(server + '/goods/byName'),
     // Buy
     apiBuyList: JSON.stringify(server + '/buy/list'),
-    apiBuyAdd: JSON.stringify(server + '/buy/add')
+    apiBuyAdd: JSON.stringify(server + '/buy/add'),
+    // Sale
+    apiSaleList: JSON.stringify(server + '/sale/list'),
+    apiSaleAdd: JSON.stringify(server + '/sale/add'),
+    // Taizhang
+    apiTaizhangList: JSON.stringify(server + '/taizhang/list')
   }
 };

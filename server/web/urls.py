@@ -5,6 +5,7 @@ from controller.Customer_C import *
 from controller.Goods_C import *
 from controller.Taizhang_C import *
 from controller.Buy_C import *
+from controller.Sale_C import *
 
 urls = (
     '/index', 'index',
@@ -45,6 +46,9 @@ urls = (
 
     '/buy/list', 'list_buy',
     '/buy/add', 'buy',
+
+    '/sale/list', 'list_sale',
+    '/sale/add', 'sale',
 
     '/taizhang/list', 'list_taizhang',
     '/taizhang/add', 'add_taizhang',

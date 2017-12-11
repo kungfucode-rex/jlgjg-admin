@@ -57,6 +57,7 @@ class Goods(Model):
     conversion = StringField()
     quantity = FloatField()
     aprice = FloatField()
+    money = FloatField()
 
 class Buy(Model):
     __table__ = 'buy'
@@ -64,6 +65,25 @@ class Buy(Model):
     no = StringField()
     provider_no = StringField()
     provider_name = StringField()
+    goods_no = StringField()
+    goods_name = StringField()
+    goods_guige = StringField()
+    goods_unit = StringField()
+    quantity = FloatField()
+    price = FloatField()
+    money = FloatField()
+    aprice_before = FloatField()
+    aprice_after = FloatField()
+    creater = StringField()
+    creater_name = StringField()
+    createtime = IntegerField()
+
+class Sale(Model):
+    __table__ = 'sale'
+    id = StringField(primary_key=True)
+    no = StringField()
+    customer_no = StringField()
+    customer_name = StringField()
     goods_no = StringField()
     goods_name = StringField()
     goods_guige = StringField()

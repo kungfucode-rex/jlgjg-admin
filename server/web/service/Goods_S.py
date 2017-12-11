@@ -25,7 +25,7 @@ def blurQueryByName(params):
     return Goods.find_by('where name like ?', name)
 
 def getByNo(params):
-    return Goods.find_by('where no = ?', params.no)
+    return Goods.find_by('where no = ?', params.no)[0]
 
 def add(params):
     goods = Goods(
@@ -36,6 +36,7 @@ def add(params):
         unit = params.unit,
         conversion = params.conversion,
         quantity = params.quantity,
+        money = float(params.quantity) * float(params.aprice),
         aprice = params.aprice
     )
     return goods.insert()
@@ -50,7 +51,7 @@ def getNewNo():
     sql = 'select max(no) from goods'
     results = DBUtil.select(sql)
     maxNo = results[0]['max(no)']
-    if maxNo != '':
+    if maxNo != None:
         newNo = 'S' + str(int(maxNo.replace('S', '1')) + 1)[1:]
         return newNo
     else:

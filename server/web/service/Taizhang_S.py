@@ -48,3 +48,14 @@ def update(taizhang):
 
 def delete(taizhang):
     return taizhang.delete()
+
+def getNewNo():
+    sql = 'select max(no) from taizhang'
+    results = DBUtil.select(sql)
+    maxNo = results[0]['max(no)']
+    if maxNo != None:
+        newNo = 'T' + str(int(maxNo.replace('T', '1')) + 1)[1:]
+        return newNo
+    else:
+        # 没有记录，新创建一个
+        return 'T00001'

@@ -42,6 +42,7 @@ export default {
             }
           },
           {title: '加权平均单价', key: 'aprice'},
+          {title: '累计金额', key: 'money'},
           {
             title: '操作',
             key: 'action',

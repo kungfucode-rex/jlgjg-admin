@@ -21,13 +21,13 @@ export default {
       name: 'oss_goods_buy_BuyList'
     }, {
       text: '销售商品',
-      name: 'oss_sysmanager_customer_CustomerList'
+      name: 'oss_goods_sale_SaleList'
     }]
   }, {
     text: '账目查询',
     subMenus: [{
       text: '台账明细',
-      name: 'oss_sysmanager_user_UserList'
+      name: 'oss_bill_taizhang_TaizhangList'
     }, {
       text: '收款查询',
       name: 'oss_sysmanager_provider_ProviderList'

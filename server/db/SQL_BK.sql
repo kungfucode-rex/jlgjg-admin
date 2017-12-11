@@ -55,6 +55,7 @@ create table goods
 	unit varchar(10) null comment '计量单位',
 	conversion varchar(200) null comment '计量单位换算',
 	quantity float null comment '库存',
+	money float null comment '累计金额',
 	aprice float null comment '加权平均单价'
 )
 comment '商品表' engine=InnoDB
@@ -83,6 +84,29 @@ create table provider
 		unique (no)
 )
 comment '供应商表' engine=InnoDB
+;
+
+create table sale
+(
+	id varchar(50) not null
+		primary key,
+	no varchar(20) null comment '销货单号',
+	customer_no varchar(20) null comment '客户编号',
+	customer_name varchar(100) null comment '客户名称',
+	goods_no varchar(20) null comment '商品编号',
+	goods_name varchar(100) null comment '商品名称',
+	goods_guige varchar(50) null comment '商品规格',
+	goods_unit varchar(10) null comment '商品单位',
+	quantity float null comment '销售数量',
+	price float null comment '单价',
+	money float null comment '数量',
+	aprice_after float null comment '售后加权平均单价',
+	aprice_before float null comment '售前加权平均单价',
+	creater varchar(50) null comment '销售人',
+	creater_name varchar(50) null,
+	createtime bigint null comment '销售时间'
+)
+comment '销货清单表' engine=InnoDB
 ;
 
 create table sessions
