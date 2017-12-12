@@ -8,7 +8,7 @@ var oldVersions = {}
 var X2DBBgResources = {
   name: 'X2DB',
   storeName: 'bgResources',
-  version: 1511789815,// 每次发版都会生成一个新的数据库版本(时间戳秒数)
+  version: 1513081741,// 每次发版都会生成一个新的数据库版本(时间戳秒数)
   db: null,
   resourcesArr: [
     // id 是indexedDB中的keyPath
@@ -16,9 +16,9 @@ var X2DBBgResources = {
     // type style:样式文件, script:脚本文件
     // 这里的顺序就是资源在页面加载的顺序
     {id: 'app.css', url: 'static/css/app.16ad0dd40958208b824070248097437e.css', type: 'style'},
-    {id: 'manifest.js', url: 'static/js/manifest.b2d80298d83ada3e703f.js', type: 'script'},
-    {id: 'vendor.js', url: 'static/js/vendor.90de790a6c0c49e41b1b.js', type: 'script'},
-    {id: 'app.js', url: 'static/js/app.3e19129f9f7af728781e.js', type: 'script'}
+    {id: 'manifest.js', url: 'static/js/manifest.f135bb00dadd6b0dc484.js', type: 'script'},
+    {id: 'vendor.js', url: 'static/js/vendor.3d498db8e2037708ea9c.js', type: 'script'},
+    {id: 'app.js', url: 'static/js/app.2a13231dd42f873dd945.js', type: 'script'}
   ]
 }
 // 是否需要更新版本, 如果需要更新的话, 不会去使用数据库中的资源到页面
