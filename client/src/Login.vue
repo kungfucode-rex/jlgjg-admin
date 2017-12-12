@@ -2,8 +2,8 @@
   <div class="login-page">
     <Card style="width:350px">
       <div slot="title">
-        <div class="login-logo"></div>
-        <p class="login-title">龙哥测试项目</p>
+        <div class="login-logo">鑫</div>
+        <p class="login-title">金麟钢构后台管理</p>
       </div>
       <iInput v-model="username" autofocus size="large" style="margin-top: 10px" @on-change="refreshErrMsg" @on-keyup.enter="loginSubmit">
         <span slot="prepend">
@@ -162,13 +162,19 @@
     background-repeat: no-repeat
     background-size: cover
     .login-logo
-      background-image: url(../static/images/x2-logo-hd.png)
+      // background-image: url(../static/images/x2-logo-hd.png)
       width: 100px
       height: 100px
       background-size: contain
       margin: auto
       border-radius: 50px;
       box-shadow: 2px 5px 25px;
+      display: flex
+      justify-content: center
+      align-items: center
+      font-size: 48px
+      background-color: #0277BD;
+      color: #fff;
     .ivu-icon
       font-size: 20px
     .login-title

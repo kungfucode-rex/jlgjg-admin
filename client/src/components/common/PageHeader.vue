@@ -1,6 +1,6 @@
 <template>
   <div class="page-header">
-    <div class="header-logo"></div>
+    <div class="header-logo">金麟钢构</div>
     <div class="header-center-menu">
       <ul>
         <template v-for="(value, menuId) in menus">
@@ -155,9 +155,17 @@
     z-index: 1
     .header-logo
       width: G_SIDE_MENU_OUT_WRAPPER
-      background-image: url(../../../static/images/logo.png)
-      background-repeat: no-repeat
-      background-position: center
+      // background-image: url(../../../static/images/logo.png)
+      // background-repeat: no-repeat
+      // background-position: center
+      display:flex
+      padding-left:20px
+      justify-content: flex-start
+      align-items : center
+      font-size: 26px
+      color: #fff
+      font-family: '微软雅黑'
+      font-weight: 100
     .header-center-menu
       flex-grow: 1
       ul

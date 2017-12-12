@@ -13,7 +13,7 @@ export default {
   menus: menus, // 所有菜单
   rootMenus: { // 主菜单
     'oss': {
-      name: '企业后台',
+      name: '后台管理',
       routerPath: 'oss'
     }
   },
