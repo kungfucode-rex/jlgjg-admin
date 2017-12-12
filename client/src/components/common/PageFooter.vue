@@ -1,6 +1,6 @@
 <template>
   <div class="page-footer">
-    2011-2016 &copy; 海南小二网络科技有限公司
+    2011-2016 &copy; 金麟钢结构
   </div>
 </template>
 <script>
