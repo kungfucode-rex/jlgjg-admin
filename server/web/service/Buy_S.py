@@ -46,7 +46,7 @@ def getByNo(params):
 @with_transaction
 def add(paramsArr):
     try:
-        newNo = 'BUY' + datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        newNo = 'B' + datetime.datetime.now().strftime("%Y%m%d%H%M%S")
         for params in paramsArr:
             params = toDict(params)
             tempTime = int(time.time() * 1000)

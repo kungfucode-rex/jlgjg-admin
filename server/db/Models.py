@@ -107,7 +107,7 @@ class Taizhang(Model):
     goods_no = StringField()
     goods_name = StringField()
     goods_guige = StringField()
-    buy_quantity = IntegerField()
+    buy_quantity = FloatField()
     buy_price = FloatField()
     buy_money = FloatField()
     sale_quantity = FloatField()

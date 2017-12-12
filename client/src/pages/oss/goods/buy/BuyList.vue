@@ -48,7 +48,13 @@ export default {
           {title: '商品名称', key: 'goods_name'},
           {title: '规格', key: 'goods_guige'},
           {title: '数量', key: 'quantity'},
-          {title: '单位', key: 'goods_unit'},
+          {
+            title: '单位', 
+            key: 'goods_unit',
+            render: (h, params) => {
+              return this._v(this.$SysCode.translate(params.row.goods_unit, 'UnitType'))
+            }
+          },
           {title: '单价', key: 'price'},
           {title: '金额', key: 'money'},
           {title: '经办人', key: 'creater_name'},

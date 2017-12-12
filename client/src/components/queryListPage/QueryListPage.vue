@@ -402,11 +402,7 @@
     .ivu-table-wrapper
       flex-grow: 1
       overflow-y: auto
-      border-top: none
-      border-left: none
       .ivu-table
-        &:after
-          width: 0
         .ivu-table-title
           height: table-header-height
           .table-header
@@ -428,12 +424,6 @@
                 border-left: 1px solid rgba(37, 83, 160, 0.5)
                 font-size: 14px
                 padding: 2px 10px
-
-        .ivu-table-header, .ivu-table-body, .ivu-table-tip
-          border-left: 1px solid #dddee1
-          border-right: 1px solid #dddee1
-        .ivu-table-tip td
-          border-right: 0
         .ivu-table-body
           .ivu-table-cell
             padding-left: 10px;

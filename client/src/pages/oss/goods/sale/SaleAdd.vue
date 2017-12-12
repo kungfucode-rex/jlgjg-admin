@@ -84,6 +84,10 @@
                   {style: 'info', text: '添加', handler: this.appendGoods}
                 ]
               }
+            },
+            comment: {
+              type: 'textarea',
+              label: '备注'
             }
           },
           formActions: [
@@ -144,6 +148,7 @@
           saleRecord.money = item.money
           saleRecord.creater = self.$loginUser.id
           saleRecord.creater_name = self.$loginUser.cnname
+          saleRecord.comment = data.comment
           results.push(saleRecord)
         })
         return results
@@ -194,12 +199,30 @@
         }
       },
       appendGoods () {
+        debugger
         if (this.selectedGoodsInfo.id) {
-          let goods = Object.assign({}, this.selectedGoodsInfo)
-          goods.quantity = this.formConfig.formModel.quantity
-          goods.price = this.formConfig.formModel.price
-          goods.money = goods.quantity * goods.price
-          this.$refs['saleForm'].acceptData('selectedGoods', goods)
+          if (this.formConfig.formModel.quantity > this.selectedGoodsInfo.quantity) {
+            this.$Notice.warning({
+              titel: '提示',
+              desc: '库存不足'
+            })
+          } else if (!(this.formConfig.formModel.quantity > 0)) {
+            this.$Notice.warning({
+              titel: '提示',
+              desc: '销售数量不正确'
+            })
+          } else if (!(Number(this.formConfig.formModel.price) > 0)) {
+            this.$Notice.warning({
+              titel: '提示',
+              desc: '销售金额不能小于０'
+            })
+          } else {
+            let goods = Object.assign({}, this.selectedGoodsInfo)
+            goods.quantity = this.formConfig.formModel.quantity
+            goods.price = this.formConfig.formModel.price
+            goods.money = goods.quantity * goods.price
+            this.$refs['saleForm'].acceptData('selectedGoods', goods)
+          }
         } else {
           this.$Notice.warning({
             titel: '提示',
