@@ -13,7 +13,8 @@
           <div class="no">{{item.no}}</div>
         </div>  
         <div class="product-detail">
-          <div class="product-icon" :style="{'background-image': 'url(' + typeImgs[item.type] + ')'}"></div>
+          <div class="product-icon" 
+            :class="{'product-img-H': item.type === 'H','product-img-C': item.type === 'C','product-img-G': item.type === 'G'}"></div>
           <div class="product-info">
             <div class="aprice">加权单价：{{item.aprice}}</div>
             <div class="money">累计金额：{{(item.aprice * item.quantity).toFixed(3)}}</div>
@@ -111,6 +112,12 @@ export default {
             background-position: center;
             background-repeat: no-repeat;
             border-radius: 10px;
+            &.product-img-H
+              background-image: url(../../../../../static/images/Hgang.png)
+            &.product-img-C
+              background-image: url(../../../../../static/images/Cgang.png)
+            &.product-img-G
+              background-image: url(../../../../../static/images/Ggang.png)
           .product-info   
             flex-grow: 1
             margin-left: 10px
