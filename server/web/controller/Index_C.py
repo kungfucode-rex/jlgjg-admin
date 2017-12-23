@@ -52,7 +52,11 @@ def gen_code():
 
 class index:
     def GET(self):
-        return web.template.frender('index.html')()
+        agent = web.ctx.env['HTTP_USER_AGENT'].lower()
+        if 'android' in agent or 'iphone' in agent:
+            return web.template.frender('indexMobile.html')()
+        else:
+            return web.template.frender('index.html')()
 
 class get_validate_code:
     def GET(self):

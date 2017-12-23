@@ -19,3 +19,13 @@ client/test/unit/coverage
 client/src/router/autoRoutes.js
 client/release/
 client/.idea/
+
+mobile/node_modules/
+mobile/dist/
+mobile/npm-debug.log*
+mobile/yarn-debug.log*
+mobile/yarn-error.log*
+mobile/test/unit/coverage
+mobile/src/router/autoRoutes.js
+mobile/release/
+mobile/.idea/
