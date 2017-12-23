@@ -15,7 +15,7 @@ var X2DBBgResources = {
     // url 会换成新的hashUrl
     // type style:样式文件, script:脚本文件
     // 这里的顺序就是资源在页面加载的顺序
-    {id: 'app.css', url: 'static/jlgjgmobile/static/css/app', type: 'style'},
+    // {id: 'app.css', url: 'static/jlgjgmobile/static/css/app', type: 'style'},
     {id: 'manifest.js', url: 'static/jlgjgmobile/static/js/manifest', type: 'script'},
     {id: 'vendor.js', url: 'static/jlgjgmobile/static/js/vendor', type: 'script'},
     {id: 'app.js', url: 'static/jlgjgmobile/static/js/app', type: 'script'}

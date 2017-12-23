@@ -8,14 +8,14 @@ var oldVersions = {}
 var X2DBBgResources = {
   name: 'JLDB',
   storeName: 'bgResources',
-  version: 1514028794,// 每次发版都会生成一个新的数据库版本(时间戳秒数)
+  version: 1514028921,// 每次发版都会生成一个新的数据库版本(时间戳秒数)
   db: null,
   resourcesArr: [
     // id 是indexedDB中的keyPath
     // url 会换成新的hashUrl
     // type style:样式文件, script:脚本文件
     // 这里的顺序就是资源在页面加载的顺序
-    {id: 'app.css', url: 'static/jlgjgmobile/undefined', type: 'style'},
+    // {id: 'app.css', url: 'static/jlgjgmobile/undefined', type: 'style'},
     {id: 'manifest.js', url: 'static/jlgjgmobile/static/js/manifest.361d9785c6ee9dad02fc.js', type: 'script'},
     {id: 'vendor.js', url: 'static/jlgjgmobile/static/js/vendor.82e6a8c69c5b8cce2880.js', type: 'script'},
     {id: 'app.js', url: 'static/jlgjgmobile/static/js/app.035feb18076a4399c15a.js', type: 'script'}
