@@ -1,12 +1,17 @@
 <template>
   <div class="page-container dev-page">
-    <div class="developing">开发中</div>
+    <div class="developing" @click="logout">退出</div>
   </div>
 </template>
 <script>
-export default {
-  
-}
+  import {mapActions} from 'vuex'
+  export default {
+    methods: {
+      ...mapActions([
+        'logout'
+      ])
+    }
+  }
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
   .dev-page

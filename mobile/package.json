@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --config build/webpack.dev.conf.js",
-    "prod": "webpack --config build/webpack.prod.conf.js ; cp static/index.js dist/jlgjgmobile/static/; cp dist/jlgjgmobile ../static/ -r",
+    "prod": "webpack --config build/webpack.prod.conf.js ; cp static/index.js dist/jlgjgmobile/static/;rm -r ../static/jlgjgmobile;cp dist/jlgjgmobile ../static/ -r",
     "release": "webpack --config build/webpack.release.conf.js ; cp static/index.js release/jlgjgmobile/static/",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "test": "npm run unit"
