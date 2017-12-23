@@ -1,6 +1,6 @@
 <template>
   <div class="page-container dev-page">
-    <div class="developing" @click="logout">退出</div>
+    <div class="developing" @click="exit">退出</div>
   </div>
 </template>
 <script>
@@ -9,7 +9,14 @@
     methods: {
       ...mapActions([
         'logout'
-      ])
+      ]),
+      exit () {
+        this.$http.get(apiLogout).then(response => {
+          if (response.data.code === 200) {
+            this.logout()
+          }
+        })
+      }
     }
   }
 </script>
