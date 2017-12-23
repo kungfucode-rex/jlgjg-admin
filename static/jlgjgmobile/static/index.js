@@ -8,7 +8,7 @@ var oldVersions = {}
 var X2DBBgResources = {
   name: 'JLDB',
   storeName: 'bgResources',
-  version: 1514027966,// 每次发版都会生成一个新的数据库版本(时间戳秒数)
+  version: 1514028794,// 每次发版都会生成一个新的数据库版本(时间戳秒数)
   db: null,
   resourcesArr: [
     // id 是indexedDB中的keyPath
